@@ -1,0 +1,64 @@
+USE [MedicineDB]
+GO
+/****** Object:  Table [dbo].[medicines]    Script Date: 06-10-2020 21:17:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[medicines](
+	[MedicineId] [int] IDENTITY(1,1) NOT NULL,
+	[MedicineName] [varchar](100) NULL,
+	[Brand] [varchar](100) NULL,
+	[Price] [decimal](6, 2) NULL,
+	[Quantity] [numeric](8, 0) NULL,
+	[ExpiryDate] [date] NULL,
+	[Notes] [varchar](1000) NULL
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[medicines] ON 
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (1, N'PCM', N'Ranbaxy', CAST(10.00 AS Decimal(6, 2)), CAST(25 AS Numeric(8, 0)), CAST(N'2020-09-30' AS Date), N'This medicine is used to treat cough, cold and flu')
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (2, N'Crocin', N'GSK', CAST(15.00 AS Decimal(6, 2)), CAST(50 AS Numeric(8, 0)), CAST(N'2020-09-08' AS Date), N'This medicine is used to treat headache')
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (12, N'Asprin', N'Null', CAST(15.00 AS Decimal(6, 2)), CAST(50 AS Numeric(8, 0)), CAST(N'1900-01-01' AS Date), N'Null')
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (13, N'Morphine', N'Astramorph PF', CAST(75.00 AS Decimal(6, 2)), CAST(30 AS Numeric(8, 0)), CAST(N'1900-01-01' AS Date), N'This medicine used to treat pain')
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (14, N'med.MedicineName', N'med.Brand', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (15, N'med.MedicineName', N'med.Brand', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (16, N'med.MedicineName', N'med.Brand', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (17, N'@MedicineName', N'@Brand', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (18, N'@MedicineName', N'@Brand', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (19, N'Marijauna1', N'ranbaxy', NULL, NULL, NULL, NULL)
+GO
+INSERT [dbo].[medicines] ([MedicineId], [MedicineName], [Brand], [Price], [Quantity], [ExpiryDate], [Notes]) VALUES (20, N'Marijauna1', N'ranbaxy', CAST(56.00 AS Decimal(6, 2)), CAST(10 AS Numeric(8, 0)), CAST(N'2020-11-16' AS Date), N'Used to feel the life')
+GO
+SET IDENTITY_INSERT [dbo].[medicines] OFF
+GO
+/****** Object:  StoredProcedure [dbo].[addMed]    Script Date: 06-10-2020 21:17:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[addMed]
+     @MedicineName varchar(100),
+     @Brand varchar(50),
+	 @Price Decimal(6,2),
+	 @Quantity Numeric(8,0),
+	 @ExpiryDate Date,
+	 @Notes varchar(100)
+ 
+AS
+ begin
+   insert into dbo.medicines (MedicineName, Brand, Price, Quantity, Notes, ExpiryDate) Values 
+                            (@MedicineName , @Brand, @Price, @Quantity, @Notes, @ExpiryDate)
+
+     end        
+    RETURN
+GO
